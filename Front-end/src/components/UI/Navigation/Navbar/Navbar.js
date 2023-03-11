@@ -60,7 +60,7 @@ const Navbar = () => {
         className="nav-item"
         data-toggle="tooltip"
         data-placement="top"
-        title="Create Your Course"
+        title="Create Your Content"
       >
         <NavLink
           to="/teacherhome"
@@ -76,7 +76,7 @@ const Navbar = () => {
           <i
             data-toggle="tooltip"
             data-placement="top"
-            title="Bookmarked Courses"
+            title="Bookmarked Content"
             className="fa fa-book"
             aria-hidden="true"
           >
@@ -90,7 +90,7 @@ const Navbar = () => {
           <i
             data-toggle="tooltip"
             data-placement="top"
-            title="Bookmarked Courses"
+            title="Bookmarked Content"
             className="fa fa-user"
             aria-hidden="true"
           >
@@ -158,7 +158,7 @@ const Navbar = () => {
                 to="/home/all"
                 activeClassName="active-categoryMenu"
               >
-                All Courses
+                All Content
               </NavLink>
               <NavLink
                 className="dropdown-item"

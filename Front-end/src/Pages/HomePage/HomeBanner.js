@@ -32,7 +32,7 @@ class HomepageBanner extends Component {
 
           <Link to="teacher">
             {" "}
-            <button className="createCourse">Create New Course</button>
+            <button className="createCourse">Create New Content</button>
           </Link>
         </div>
       );

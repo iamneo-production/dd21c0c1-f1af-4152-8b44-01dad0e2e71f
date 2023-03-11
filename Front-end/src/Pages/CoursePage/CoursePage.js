@@ -295,7 +295,7 @@ class CoursePage extends Component {
                 </div>
 
                 <div className="flex-col-requirement">
-                  <h1>Requirement of this Course</h1>
+                  <h1>Requirement of this content</h1>
                   <p>{requirement}</p>
                 </div>
 
@@ -305,7 +305,7 @@ class CoursePage extends Component {
                 </div>
 
                 <div className="flex-col-requirement">
-                  <h1>What will you learn from this course?</h1>
+                  <h1>What will you learn from this content?</h1>
                   <p>{willLearn}</p>
                 </div>
               </div>
@@ -316,7 +316,7 @@ class CoursePage extends Component {
 
                 <div className="progressBar">
                   <p className="Rating_coursePage">
-                    Rate the course here please
+                    Rate the content here please
                   </p>
                   <Rating
                     style={{ justifyContent: "center" }}

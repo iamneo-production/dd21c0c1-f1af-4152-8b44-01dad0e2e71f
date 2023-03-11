@@ -252,7 +252,7 @@ class EventPage extends Component {
               </div>
 
               <div className="flex-col-requirement">
-                <h1>Requirement of this Course</h1>
+                <h1>Requirement of this content</h1>
                 <p>{requirement}</p>
               </div>
 
@@ -262,7 +262,7 @@ class EventPage extends Component {
               </div>
 
               <div className="flex-col-requirement">
-                <h1>What will you learn from this course?</h1>
+                <h1>What will you learn from this?</h1>
                 <p>{willLearn}</p>
               </div>
             </div>
