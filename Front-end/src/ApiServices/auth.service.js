@@ -45,9 +45,9 @@ class AuthServices {
   }
 
   getUserDetails() {
-    const userId = localStorage.getItem("user");
+    const userId = localStorage.getItem("userId");
 
-    return axios.get(`/users/${userId}`, {
+    return axios.get(`/user/${userId}`, {
       headers: {
         Authorization:
           "Bearer " +

@@ -110,7 +110,7 @@ class TeacherPage extends Component {
       },
 
       requirement: {
-        label: "What are the requirements of this course?",
+        label: "What are the requirements of this content?",
         rows: "5",
         cols: "70",
         placeholder: "Must know python etc ",

@@ -113,7 +113,7 @@ class TeacherPage extends Component {
       },
 
       requirement: {
-        label: "What are the requirements of this course?",
+        label: "What are the requirements of this content?",
         rows: "5",
         cols: "70",
         placeholder: "Must know python etc ",
@@ -126,7 +126,7 @@ class TeacherPage extends Component {
       },
 
       price: {
-        label: "Price of this course (INR)?",
+        label: "Price of this Content (INR)?",
         rows: "1",
         cols: "50",
         placeholder: "100",
