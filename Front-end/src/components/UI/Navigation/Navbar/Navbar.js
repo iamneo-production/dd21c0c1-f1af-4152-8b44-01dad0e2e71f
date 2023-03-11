@@ -86,6 +86,20 @@ const Navbar = () => {
       </li>
 
       <li className="nav-item">
+        <NavLink to="/Profile" className="nav-link ">
+          <i
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Bookmarked Courses"
+            className="fa fa-user"
+            aria-hidden="true"
+          >
+            <span id="profile"> Profile</span>
+          </i>
+        </NavLink>
+      </li>
+
+      <li className="nav-item">
         <GoogleLogout
           clientId={process.env.REACT_APP_GOOGLE_API_KEY}
           buttonText="Logout"

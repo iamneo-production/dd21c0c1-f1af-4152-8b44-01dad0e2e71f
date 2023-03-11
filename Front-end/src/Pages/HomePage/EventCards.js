@@ -1,10 +1,7 @@
 import React from "react";
 import "./CSS/CategoriesCard.css";
-import Rating from "../CoursePage/Rating";
 
 const EventCards = (props) => {
-  const events = ["Hackathon", "Job", "Interview"];
-
   return (
     <div className="Course-Cards">
       <div className="my-card">

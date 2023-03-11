@@ -515,7 +515,7 @@ class TeacherPage extends Component {
                 Jobs
               </button>
               <button
-                className={classInterviews.join(" ")}
+                className={classCareer.join(" ")}
                 onClick={() => this.categoryHandler("Career")}
               >
                 {" "}

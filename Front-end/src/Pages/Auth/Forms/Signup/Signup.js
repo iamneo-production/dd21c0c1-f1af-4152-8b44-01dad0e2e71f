@@ -6,7 +6,6 @@ import AuthService from "../../../../ApiServices/auth.service";
 import "../Form.css";
 import Input from "../../../../components/UI/Input/FormInput";
 import MainPage from "../../../../components/UI/MainPage/MainPage";
-import GoogleLogo from "../../../../components/UI/Logo/google";
 import SpinnerButton from "../../../../components/UI/Spinners/SpinnerButton";
 import { GoogleLogin } from "@react-oauth/google";
 import SumbitButton from "../../../../components/UI/Buttons/SumbitButton";

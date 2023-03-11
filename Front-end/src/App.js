@@ -19,6 +19,7 @@ import Stripe from "./Pages/payment/StripeContainer";
 import Chat from "./Pages/Chat/Chat";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import EventPage from "./Pages/CoursePage/EventPage";
+import Profile from "./Pages/Profile/Profile";
 
 class App extends Component {
   events = ["Hackathon", "Job", "Interview"];
@@ -60,6 +61,7 @@ class App extends Component {
             />
 
             <Route path="/Cart" component={Cart} />
+            <Route path="/Profile" component={Profile} />
 
             <Route
               path="/stripe/:CourseLink"
