@@ -12,6 +12,11 @@ class AuthServices {
     return axios.post("/signup", data);
   }
 
+  update(data) {
+    console.log("update");
+    return axios.post("/update", data);
+  }
+
   otp(data) {
     return axios.post("/signup/otp", data);
   }

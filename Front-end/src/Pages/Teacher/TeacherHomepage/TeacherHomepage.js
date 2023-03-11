@@ -100,12 +100,12 @@ class TeacherHomePage extends Component {
 
       if (CourseArray.length !== 0) {
         welcomeMessage = (
-          <CourseTitle welcomeMessage={"Here are your courses, "} />
+          <CourseTitle welcomeMessage={"Here are your contents, "} />
         );
       } else {
         welcomeMessage = (
           <CourseTitle
-            welcomeMessage={"You haven't Uploaded any courses yet "}
+            welcomeMessage={"You haven't Uploaded any contents yet "}
           />
         );
       }

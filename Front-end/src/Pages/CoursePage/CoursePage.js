@@ -224,7 +224,7 @@ class CoursePage extends Component {
         <>
           <p>
             You have Completed <b>{this.state.progress.toPrecision(2)}% </b> of
-            your course!
+            your content!
           </p>
           <ProgressBar variant="success" now={this.state.progress} />
         </>

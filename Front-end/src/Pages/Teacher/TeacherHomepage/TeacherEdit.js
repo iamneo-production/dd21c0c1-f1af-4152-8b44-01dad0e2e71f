@@ -330,7 +330,7 @@ class TeacherPage extends Component {
         if (res.status === 201 || res.status === 200) {
           this.props.EditCourseFromStore(res.data.course);
           this.AlertError(
-            "Your Course has been Edited Successfully!",
+            "Your Content has been Edited Successfully!",
             "success"
           );
           setTimeout(() => this.setState({ redirect: "/home" }), 2000);

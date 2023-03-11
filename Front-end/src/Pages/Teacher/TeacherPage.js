@@ -152,10 +152,10 @@ class TeacherPage extends Component {
       "Web Designing",
       "NodeJs",
       "Photography",
-      "Interviews",
+      "Interview",
       "Hackathon",
       "Career",
-      "Job",
+      "Jobs",
     ],
     isLoggedIn: false,
     userName: "",
@@ -310,7 +310,7 @@ class TeacherPage extends Component {
           console.log(res);
           this.props.AddCourseToStore(res.data.newCourse);
           this.setState({ CourseId: res.data.newCourse._id });
-          this.AlertError("Your Course has been saved!", "success");
+          this.AlertError("Your Content has been saved!", "success");
 
           setTimeout(() => {
             this.setState({ redirect: true });
@@ -390,7 +390,7 @@ class TeacherPage extends Component {
     if (this.state.Form.category["Hackathon"]) {
       classHackathon = ["ButtonClicked"];
     } else classHackathon = [];
-    if (this.state.Form.category["Interviews"]) {
+    if (this.state.Form.category["Interview"]) {
       classInterviews = ["ButtonClicked"];
     } else classInterviews = [];
     if (this.state.Form.category["Jobs"]) {
@@ -524,7 +524,7 @@ class TeacherPage extends Component {
             </div>
           </div>
 
-          <TeacherTittle TitleDesc={"Description of your Course"} />
+          <TeacherTittle TitleDesc={"Description of your Content"} />
 
           <div className="Teacher-Head-Class">
             <Tinput

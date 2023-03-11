@@ -56,6 +56,13 @@ const Categories = (props) => {
             Interview Preparation
           </NavLink>
           <NavLink
+            to="/home/Career"
+            className="career"
+            activeClassName="active-category"
+          >
+            Career Guidance
+          </NavLink>
+          <NavLink
             to="/home/preferences"
             className="recommended"
             activeClassName="active-category"
