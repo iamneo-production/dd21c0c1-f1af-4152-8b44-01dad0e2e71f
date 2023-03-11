@@ -18,6 +18,9 @@ const transporter = nodemailer.createTransport(
 exports.signup = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  const skills = req.body.skills;
+  const interests = req.body.interests;
+  const goals = req.body.goals;
   // const confirmPassword=req.body.confirmPassword;
   const name = req.body.name;
 
@@ -43,6 +46,9 @@ exports.signup = (req, res) => {
         password: hashedPassword,
         isverified: false,
         name: name,
+        skills: skills,
+        interests: interests,
+        goals: goals,
         resetVerified: false,
       });
       Newuser.save();
@@ -283,15 +289,13 @@ exports.login = (req, res, next) => {
               }
             );
 
-            return res
-              .status(201)
-              .json({
-                message: "User logged in!",
-                access_token: access_token,
-                referesh_token: referesh_token,
-                username: user.name,
-                userId: user._id,
-              });
+            return res.status(201).json({
+              message: "User logged in!",
+              access_token: access_token,
+              referesh_token: referesh_token,
+              username: user.name,
+              userId: user._id,
+            });
           } else {
             return res.status(401).json({ message: "password don't match" });
           }
@@ -391,6 +395,18 @@ exports.resetOtpVerification = (req, res, next) => {
     });
 };
 
+exports.user = (req, res) => {
+  const userId = req.body.userId;
+
+  User.findOne({ _id: userId })
+    .then((user) => {
+      console.log(user);
+      res.status(200).json({ user: user });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 exports.newPassword = (req, res, next) => {
   const email = req.body.email;
   const newPassword = req.body.newPassword;

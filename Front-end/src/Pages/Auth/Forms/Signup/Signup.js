@@ -30,6 +30,48 @@ class Signup extends Component {
 
         touched: false,
       },
+      skills: {
+        placeholder: "Your Skills",
+        value: "",
+        valid: false,
+        type: "text",
+        error: " ",
+        msg: "",
+
+        validation: {
+          required: true,
+        },
+
+        touched: false,
+      },
+      interests: {
+        placeholder: "Your Interests",
+        value: "",
+        valid: false,
+        type: "text",
+        error: " ",
+        msg: "",
+
+        validation: {
+          required: true,
+        },
+
+        touched: false,
+      },
+      goals: {
+        placeholder: "Your Goals",
+        value: "",
+        valid: false,
+        type: "text",
+        error: " ",
+        msg: "",
+
+        validation: {
+          required: true,
+        },
+
+        touched: false,
+      },
       email: {
         placeholder: "Email",
         value: "",

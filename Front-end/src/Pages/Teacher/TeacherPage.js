@@ -20,7 +20,7 @@ class TeacherPage extends Component {
         label: "Title",
         rows: "1",
         cols: "50",
-        placeholder: "Enter Course Title",
+        placeholder: "Enter Content Title",
         value: "",
         valid: false,
         validation: {
@@ -448,7 +448,7 @@ class TeacherPage extends Component {
           </div>
 
           <div className="Teacher-Courses-Buttons-head">
-            <p className="CourseCategoryTitle">Course Category</p>
+            <p className="CourseCategoryTitle">Content Category</p>
 
             <div className="Teacher-Courses-Buttons">
               <button
