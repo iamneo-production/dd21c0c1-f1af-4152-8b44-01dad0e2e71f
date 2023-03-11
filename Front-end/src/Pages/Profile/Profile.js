@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import Input from "../../components/UI/Input/FormInput";
-import MainPage from "../../components/UI/MainPage/MainPage";
 import SpinnerButton from "../../components/UI/Spinners/SpinnerButton";
 import SumbitButton from "../../components/UI/Buttons/SumbitButton";
 import authService from "../../ApiServices/auth.service";
