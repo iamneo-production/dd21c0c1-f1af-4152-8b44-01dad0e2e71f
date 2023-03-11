@@ -18,8 +18,10 @@ import Preference from "./Pages/HomePage/Preference";
 import Stripe from "./Pages/payment/StripeContainer";
 import Chat from "./Pages/Chat/Chat";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import EventPage from "./Pages/CoursePage/EventPage";
 
 class App extends Component {
+  events = ["Hackathon", "Job", "Interview"];
   render() {
     return (
       <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_KEY}>
@@ -48,9 +50,13 @@ class App extends Component {
             <Route
               path="/course/:Course/:Courseid"
               exact
-              render={(props) => (
-                <CoursePage key={props.location.pathname} {...props} />
-              )}
+              render={(props) => {
+                console.log("props - ", props);
+                if (this.events.includes(props.match.params.Course))
+                  return <EventPage key={props.location.pathname} {...props} />;
+
+                return <CoursePage key={props.location.pathname} {...props} />;
+              }}
             />
 
             <Route path="/Cart" component={Cart} />
