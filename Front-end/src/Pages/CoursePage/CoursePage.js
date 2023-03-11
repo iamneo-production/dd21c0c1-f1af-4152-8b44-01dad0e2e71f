@@ -37,11 +37,11 @@ class CoursePage extends Component {
     video2Completed: false,
     video3Completed: false,
     video4Completed: false,
-    video0Duration: "0",
-    video1Duration: "0",
-    video2Duration: "0",
-    video3Duration: "0",
-    video4Duration: "0",
+    video0Duration: 0,
+    video1Duration: 0,
+    video2Duration: 0,
+    video3Duration: 0,
+    video4Duration: 0,
   };
 
   componentDidMount() {
