@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./CSS/CourseDesc.css";
 import { Link } from "react-router-dom";
-import Rating from "./Rating";
 import AuthServices from "../../ApiServices/auth.service";
 import Url from "../../ApiServices/BackendUrl";
 

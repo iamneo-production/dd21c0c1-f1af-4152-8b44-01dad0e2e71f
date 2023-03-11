@@ -7,9 +7,9 @@ import Input from "../../../../components/UI/Input/FormInput";
 import SpinnerButton from "../../../../components/UI/Spinners/SpinnerButton";
 import MainPage from "../../../../components/UI/MainPage/MainPage";
 import GoogleLogo from "../../../../components/UI/Logo/google";
+import GoogleLogin from "react-google-login";
 import SumbitButton from "../../../../components/UI/Buttons/SumbitButton";
 import Alert from "../alert";
-import { GoogleLogin } from "@react-oauth/google";
 
 class Login extends Component {
   state = {
@@ -21,6 +21,7 @@ class Login extends Component {
         type: "email",
         error: " ",
         msg: "",
+
         validation: {
           required: true,
           // eslint-disable-next-line
@@ -220,8 +221,8 @@ class Login extends Component {
       });
   };
 
-  FailResponseGoogle = (err) => {
-    console.log(err, "something is wrong");
+  FailResponseGoogle = () => {
+    console.log("something is wrong");
   };
 
   render() {
@@ -277,7 +278,7 @@ class Login extends Component {
           )}
           buttonText="Login"
           onSuccess={this.responseGoogle}
-          onFailure={(err) => this.FailResponseGoogle(err)}
+          onFailure={this.FailResponseGoogle}
           cookiePolicy={"single_host_origin"}
         />
 

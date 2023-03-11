@@ -55,6 +55,13 @@
     font: normal normal 200 17px/23px Gilroy;
 }
 
+#profile{
+    
+    color:rgba(13, 22, 46, 0.76) !important;
+    font-weight:bold;
+    font: normal normal 200 17px/23px Gilroy;
+}
+
 .active-categoryMenu{
     color:black !important;
     font-weight:bolder !important;

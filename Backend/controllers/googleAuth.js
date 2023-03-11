@@ -10,7 +10,6 @@ exports.googleSignUp = (req, res) => {
   const { tokenId } = req.body;
 
   //console.log(process.env.OAuth2Client)
-  console.log("token", tokenId);
   client
     .verifyIdToken({ idToken: tokenId, audience: api_key.googleAuth })
     .then((response) => {

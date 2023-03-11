@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import "./CSS/CoursePage.css";
 import { NavLink, Redirect } from "react-router-dom";
-import CourseDesc from "./CourseDesc";
-import CourseVideo from "./CourseVideo";
 import axios from "../../ApiServices/axiosUrl";
 import VideoList from "./VideoList";
 import Layout from "../../components/Layout/Layout";
 import parse from "html-react-parser";
-import ProgressBar from "react-bootstrap/ProgressBar";
 import AuthServices from "../../ApiServices/auth.service";
-import Rating from "./Rating";
 import EventDesc from "./EventDesc";
 
 class EventPage extends Component {
@@ -20,7 +16,6 @@ class EventPage extends Component {
     loading: true,
     token: localStorage.getItem("user"),
     redirect: null,
-    CurrentVideo: "",
     playing: false,
     PlayButton: "fa fa-play-circle",
     progress: 0,
@@ -52,7 +47,6 @@ class EventPage extends Component {
 
         this.setState({
           CoursesInfo: response.data.course,
-          CurrentVideo: response.data.course.videoContent[0],
           loading: false,
         });
 
@@ -82,7 +76,6 @@ class EventPage extends Component {
 
   VideochangeHandler = (event, video, index, playing) => {
     let VideoNumber = "video" + index;
-    this.setState({ CurrentVideo: video });
     this.setState({ index: index });
 
     for (let i = 0; i < 5; i++) {
@@ -150,11 +143,9 @@ class EventPage extends Component {
     let longDescription = null;
     let willLearn = null;
     let videourl = null;
-    let CurrentVideo = "";
     let playButton = "";
     let playingVideo = false;
     let completed = false;
-    let progressbar = null;
 
     if (this.state.loading === false) {
       title = this.state.CoursesInfo.title;
@@ -169,7 +160,6 @@ class EventPage extends Component {
       willLearn = parse(this.state.CoursesInfo.willLearn);
       ratingtimesUpdated = this.state.CoursesInfo.rating.timesUpdated;
       videourl = this.state.CoursesInfo.videoContent.slice(0);
-      CurrentVideo = this.state.CurrentVideo;
 
       bookmark = this.state.CoursesInfo.bookmark.includes(
         localStorage.getItem("userId")
