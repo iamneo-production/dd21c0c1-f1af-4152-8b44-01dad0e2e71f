@@ -10,8 +10,9 @@ import parse from "html-react-parser";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import AuthServices from "../../ApiServices/auth.service";
 import Rating from "./Rating";
+import EventDesc from "./EventDesc";
 
-class CoursePage extends Component {
+class EventPage extends Component {
   state = {
     CourseId: this.props.match.params.Courseid,
     CourseType: this.props.match.params.Course,
@@ -45,7 +46,7 @@ class CoursePage extends Component {
   };
 
   componentDidMount() {
-    AuthServices.FetchCourses(this.state.CoursType, this.state.CourseId)
+    AuthServices.FetchCourses(this.state.CourseType, this.state.CourseId)
       .then((response) => {
         console.log("CoursePage Response", response);
 
@@ -208,29 +209,6 @@ class CoursePage extends Component {
       });
     }
 
-    if (this.state.progress === 100) {
-      progressbar = (
-        <p>
-          Congratulations {localStorage.getItem("userName")}!
-          <i
-            className="fa fa-birthday-cake"
-            style={{ marginLeft: "5px" }}
-            aria-hidden="true"
-          ></i>
-        </p>
-      );
-    } else {
-      progressbar = (
-        <>
-          <p>
-            You have Completed <b>{this.state.progress.toPrecision(2)}% </b> of
-            your course!
-          </p>
-          <ProgressBar variant="success" now={this.state.progress} />
-        </>
-      );
-    }
-
     return (
       <Layout>
         <div className="coursePage">
@@ -260,7 +238,7 @@ class CoursePage extends Component {
 
             <div className="Main-Section">
               <div className="Description-main">
-                <CourseDesc
+                <EventDesc
                   title={title}
                   short_description={short_description}
                   teacher={teacher}
@@ -272,61 +250,35 @@ class CoursePage extends Component {
                   bookmark={bookmark}
                 />
               </div>
-
-              <div className="Course-Video">
-                <CourseVideo
-                  playing={this.state.playing}
-                  videoUrl={CurrentVideo}
-                  index={this.state.index}
-                  videoCompleted={this.videoCompleted}
-                  videoDuration={this.videoDuration}
-                />
-              </div>
             </div>
 
             <div className="Breakpoint"></div>
 
-            <div className="Section2">
-              <div className="section2part1">
-                <div className="Small-nav-section">
-                  <p>About</p>
-                  {/* <p>Instructor</p>
+            <div className="section2part1">
+              <div className="Small-nav-section">
+                <p>About</p>
+                {/* <p>Instructor</p>
                             <p>About</p> */}
-                </div>
-
-                <div className="flex-col-requirement">
-                  <h1>Requirement of this Course</h1>
-                  <p>{requirement}</p>
-                </div>
-
-                <div className="flex-col-requirement">
-                  <h1>Descripton</h1>
-                  <p>{longDescription}</p>
-                </div>
-
-                <div className="flex-col-requirement">
-                  <h1>What will you learn from this course?</h1>
-                  <p>{willLearn}</p>
-                </div>
               </div>
 
-              <div style={{ marginBottom: "100px" }} className="flex-center">
-                {VideoUrl}
-                <div className="progressBar">{progressbar}</div>
-
-                <div className="progressBar">
-                  <p className="Rating_coursePage">
-                    Rate the course here please
-                  </p>
-                  <Rating
-                    style={{ justifyContent: "center" }}
-                    rating={parseInt(rating)}
-                    edit={true}
-                    specialrating={true}
-                    CourseId={this.state.CourseId}
-                  />
-                </div>
+              <div className="flex-col-requirement">
+                <h1>Requirement of this Course</h1>
+                <p>{requirement}</p>
               </div>
+
+              <div className="flex-col-requirement">
+                <h1>Descripton</h1>
+                <p>{longDescription}</p>
+              </div>
+
+              <div className="flex-col-requirement">
+                <h1>What will you learn from this course?</h1>
+                <p>{willLearn}</p>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: "100px" }} className="flex-center">
+              {VideoUrl}
             </div>
           </div>
         </div>
@@ -335,4 +287,4 @@ class CoursePage extends Component {
   }
 }
 
-export default CoursePage;
+export default EventPage;
