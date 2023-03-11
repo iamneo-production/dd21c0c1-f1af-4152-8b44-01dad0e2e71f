@@ -34,9 +34,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -50,9 +48,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -66,9 +62,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -111,17 +105,18 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    console.log("Auth called");
     authService
-      .getUserDetails(this.state.CoursType, this.state.CourseId)
+      .getUserDetails()
       .then((response) => {
-        console.log(response);
+        console.log("response", response.data.user);
         const newForm = { ...this.state.Form };
 
-        newForm.name.value = response.name;
-        newForm.email.value = response.email;
-        newForm.skills.value = response.skills;
-        newForm.goals.value = response.goals;
-        newForm.interests.value = response.interests;
+        newForm.name.value = response.data.user.name;
+        newForm.email.value = response.data.user.email;
+        newForm.skills.value = response.data.user.skills;
+        newForm.goals.value = response.data.user.goals;
+        newForm.interests.value = response.data.user.interests;
         this.setState({
           Form: newForm,
         });
@@ -304,18 +299,21 @@ class Profile extends Component {
       <div className="login-form">
         <form onSubmit={this.formHandler}>
           {formElementsArray.map((x) => (
-            <Input
-              key={x.id}
-              placeholder={x.config.placeholder}
-              value={x.config.value}
-              type={x.config.type}
-              invalid={!x.config.valid}
-              touched={x.config.touched}
-              errors={x.config.error}
-              msg={x.config.msg}
-              blur={(event) => this.inputBlurHandler(event, x.id)}
-              changed={(event) => this.inputchangeHandler(event, x.id)}
-            />
+            <div>
+              <h5>{x.config.placeholder}</h5>
+              <Input
+                key={x.id}
+                placeholder={x.config.placeholder}
+                value={x.config.value}
+                type={x.config.type}
+                invalid={!x.config.valid}
+                touched={x.config.touched}
+                errors={x.config.error}
+                msg={x.config.msg}
+                blur={(event) => this.inputBlurHandler(event, x.id)}
+                changed={(event) => this.inputchangeHandler(event, x.id)}
+              />
+            </div>
           ))}
 
           {SigninSumbitButton}

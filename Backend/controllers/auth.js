@@ -396,13 +396,11 @@ exports.resetOtpVerification = (req, res, next) => {
 };
 
 exports.user = (req, res) => {
-  const userId = req.param.userId;
-
-  console.log(userId);
+  const userId = req.params.userId;
 
   User.findOne({ _id: userId })
     .then((user) => {
-      console.log(user);
+      console.log("user", user);
       res.status(200).send({ user: user });
     })
     .catch((err) => {

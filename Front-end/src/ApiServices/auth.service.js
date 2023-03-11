@@ -47,6 +47,7 @@ class AuthServices {
   getUserDetails() {
     const userId = localStorage.getItem("userId");
 
+    console.log("userId", userId);
     return axios.get(`/user/${userId}`, {
       headers: {
         Authorization:
