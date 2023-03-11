@@ -12,6 +12,11 @@ class AuthServices {
     return axios.post("/signup", data);
   }
 
+  update(data) {
+    console.log("update");
+    return axios.post("/update", data);
+  }
+
   otp(data) {
     return axios.post("/signup/otp", data);
   }
@@ -47,6 +52,7 @@ class AuthServices {
   getUserDetails() {
     const userId = localStorage.getItem("userId");
 
+    console.log("userId", userId);
     return axios.get(`/user/${userId}`, {
       headers: {
         Authorization:

@@ -77,6 +77,45 @@ exports.signup = (req, res) => {
     });
 };
 
+exports.update = (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const skills = req.body.skills;
+  const interests = req.body.interests;
+  const goals = req.body.goals;
+  // const confirmPassword=req.body.confirmPassword;
+  const name = req.body.name;
+  const userId = req.body.userId;
+
+  console.log("reach");
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const error = new Error("Validation failed");
+    error.statusCode = 422;
+    error.data = errors.array();
+    console.log(error, error[0]);
+    res.status(422).json({ message: errors.array() });
+    throw error;
+  }
+
+  console.log("id", userId);
+
+  User.findById(userId).then((user) => {
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.skills = req.body.skills;
+    user.interests = req.body.interests;
+    user.goals = req.body.goals;
+    // const confirmPassword=req.body.confirmPassword;
+    user.name = req.body.name;
+
+    user.save().then(() => {
+      console.log("updated");
+    });
+  });
+};
+
 exports.otpVerification = (req, res, next) => {
   const receivedOtp = req.body.otp;
   const email = req.body.email;
@@ -396,13 +435,11 @@ exports.resetOtpVerification = (req, res, next) => {
 };
 
 exports.user = (req, res) => {
-  const userId = req.param.userId;
-
-  console.log(userId);
+  const userId = req.params.userId;
 
   User.findOne({ _id: userId })
     .then((user) => {
-      console.log(user);
+      console.log("user", user);
       res.status(200).send({ user: user });
     })
     .catch((err) => {

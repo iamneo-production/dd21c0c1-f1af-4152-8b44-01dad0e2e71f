@@ -81,7 +81,7 @@ class Homepage extends Component {
         CourseArray = this.props.PreferenceCourses;
 
       data = CourseArray.map((item) => {
-        const events = ["Hackathon", "Job", "Interview"];
+        const events = ["Hackathon", "Job", "Interview", "Career"];
 
         console.log("item", item);
         let rating = [item ? item.rating.ratingFinal : 0];

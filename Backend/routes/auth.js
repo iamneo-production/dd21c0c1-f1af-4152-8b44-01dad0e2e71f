@@ -28,6 +28,12 @@ router.post(
 );
 
 router.post(
+  "/update",
+
+  authController.update
+);
+
+router.post(
   "/login",
   [
     check("email")

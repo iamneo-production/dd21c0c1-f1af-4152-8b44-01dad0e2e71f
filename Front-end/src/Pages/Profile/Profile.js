@@ -34,9 +34,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -50,9 +48,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -66,9 +62,7 @@ class Profile extends Component {
         msg: "",
 
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 15,
+          required: false,
         },
 
         touched: false,
@@ -111,17 +105,21 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    console.log("Auth called");
     authService
-      .getUserDetails(this.state.CoursType, this.state.CourseId)
+      .getUserDetails()
       .then((response) => {
-        console.log(response);
-        const newForm = { ...this.state.Form };
+        console.log("response", response.data.user);
+        const newForm = {
+          ...this.state.Form,
+        };
 
-        newForm.name.value = response.name;
-        newForm.email.value = response.email;
-        newForm.skills.value = response.skills;
-        newForm.goals.value = response.goals;
-        newForm.interests.value = response.interests;
+        newForm.name.value = response.data.user.name;
+        newForm.email.value = response.data.user.email;
+        newForm.skills.value = response.data.user.skills;
+        newForm.goals.value = response.data.user.goals;
+        newForm.interests.value = response.data.user.interests;
+
         this.setState({
           Form: newForm,
         });
@@ -169,10 +167,6 @@ class Profile extends Component {
       isValid = regex.test(value) && isValid;
     }
 
-    if (rules.match) {
-      isValid = value === this.state.Form["password"].value && isValid;
-    }
-
     return isValid;
   }
 
@@ -200,12 +194,6 @@ class Profile extends Component {
     };
     const updatedElement = { ...updatedForm[inputIdentifier] };
 
-    if (updatedElement.value.length > 0) updatedElement.touched = true;
-    else {
-      updatedElement.touched = false;
-      updatedElement.error = "";
-    }
-
     // msg errrors for username
 
     if (inputIdentifier === "name" && !updatedElement.valid) {
@@ -215,25 +203,6 @@ class Profile extends Component {
     if (inputIdentifier === "name" && updatedElement.valid) {
       updatedElement.error = "";
       updatedElement.msg = "valid";
-    }
-
-    // msg error for password
-    if (inputIdentifier === "password" && !updatedElement.valid) {
-      updatedElement.error = "Minimum:5 and Maximum:18 characters";
-      updatedElement.msg = "";
-    }
-    if (inputIdentifier === "password" && updatedElement.valid) {
-      updatedElement.error = "";
-      updatedElement.msg = "valid";
-    }
-    // confirm password
-    if (inputIdentifier === "confirmPassword" && !updatedElement.valid) {
-      updatedElement.error = "Passwords do not match";
-      updatedElement.msg = "";
-    }
-    if (inputIdentifier === "confirmPassword" && updatedElement.valid) {
-      updatedElement.error = "";
-      updatedElement.msg = "Password matched!";
     }
 
     // msg errors for email
@@ -259,6 +228,40 @@ class Profile extends Component {
     return true;
   };
 
+  formHandler = (event) => {
+    console.log("called");
+    event.preventDefault();
+    this.setState({ alertPressed: true });
+    setTimeout(this.timeout, 3000);
+    this.setState({ loading: true });
+
+    localStorage.setItem("email", this.state.Form["email"].value);
+
+    const formData = {};
+    for (let formElement in this.state.Form) {
+      formData[formElement] = this.state.Form[formElement].value;
+    }
+
+    console.log("auth");
+    authService
+      .update(formData)
+      .then((response) => {
+        console.log("Response:", response);
+
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("valid", true);
+        localStorage.setItem("type", "success");
+        localStorage.setItem("msg", response.data.message);
+      })
+      //  alert("Something went wrong")})
+
+      .catch((error) => {
+        console.log(error.response);
+        this.setState({ loading: false });
+        this.AlertError(error.response.data.message[0].msg, "danger");
+      });
+  };
+
   timeout = () => {
     let temp = { ...this.state.alert };
     temp.msg = "";
@@ -269,16 +272,6 @@ class Profile extends Component {
 
   render() {
     let alertContent = null;
-
-    // if (this.state.alert.valid) {
-    //   alertContent = (
-    //     <Alert
-    //       value={this.state.alertPressed}
-    //       alertMsg={this.state.alert.msg}
-    //       alertType={this.state.alert.alertType}
-    //     />
-    //   );
-    // }
 
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
@@ -304,18 +297,21 @@ class Profile extends Component {
       <div className="login-form">
         <form onSubmit={this.formHandler}>
           {formElementsArray.map((x) => (
-            <Input
-              key={x.id}
-              placeholder={x.config.placeholder}
-              value={x.config.value}
-              type={x.config.type}
-              invalid={!x.config.valid}
-              touched={x.config.touched}
-              errors={x.config.error}
-              msg={x.config.msg}
-              blur={(event) => this.inputBlurHandler(event, x.id)}
-              changed={(event) => this.inputchangeHandler(event, x.id)}
-            />
+            <div>
+              <h5>{x.config.placeholder}</h5>
+              <Input
+                key={x.id}
+                placeholder={x.config.placeholder}
+                value={x.config.value}
+                type={x.config.type}
+                invalid={!x.config.valid}
+                touched={x.config.touched}
+                errors={x.config.error}
+                msg={x.config.msg}
+                blur={(event) => this.inputBlurHandler(event, x.id)}
+                changed={(event) => this.inputchangeHandler(event, x.id)}
+              />
+            </div>
           ))}
 
           {SigninSumbitButton}
